@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: FastAPI AWS Lambda serverless
+Resources:
+  FastapiExampleLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Events:
+        ApiEvent:
+          Properties:
+            RestApiId:
+              Ref: FastapiExampleGateway
+            Path: /{proxy+}
+            Method: ANY
+          Type: Api
+      FunctionName: fastapi-lambda-example
+      CodeUri: s3://my-travis-deployment-buck/8d6d76945af0099043d8f8e5c71f0b9c
+      Handler: app.main.handler
+      Runtime: python3.7
+      Timeout: 300
+      MemorySize: 128
+      Description: FastAPI AWS Lambda serverless
+      Role:
+        Fn::Sub: arn:aws:iam::${AWS::AccountId}:role/fastapilambdarole
+  FastapiExampleGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      OpenApiVersion: 3.0.0

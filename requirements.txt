@@ -1,0 +1,3 @@
+# required by aws sam for deployment
+# -------------------------------------------------------------------
+-r requirements/production.txt

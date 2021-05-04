@@ -1,0 +1,10 @@
+{
+    "python.linting.pylintEnabled": false,
+    "python.pythonPath": "${workspaceFolder}/venv/bin/python",
+    "files.associations": {
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+    "python.formatting.provider": "black",
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true
+}
